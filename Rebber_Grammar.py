@@ -1,27 +1,26 @@
 import os
 import random
 
-def create_data(sequenceNumber):
+def create_data(sequenceNumber,testingNumber):
 	trainingNumber = int(.8*sequenceNumber)
 	remaining = sequenceNumber-trainingNumber
 	validationNumber = int(remaining/2)
-	testingNumber = sequenceNumber-trainingNumber-validationNumber
 	trainingFile = open('trainingFile.txt', 'w')
 	for index in range(trainingNumber):
-		print>>trainingFile, embedded_rebber_grammar()
+		trainingFile.write(embedded_rebber_grammar() + '\n')
 	trainingFile.close()
 	validationFile = open('validationFile.txt','w')
 	for index in range(validationNumber):
-		print>>validationFile, embedded_rebber_grammar()
+		validationFile.write(embedded_rebber_grammar() + '\n')
 	validationFile.close()
 	testingFile = open('testingFile.txt','w')
 	for index in range(testingNumber):
-		print>>testingFile, embedded_rebber_grammar()
+		testingFile.write(embedded_rebber_grammar() + '\n')
 	testingFile.close()
 
-	trainingList = [None]*trainingNumber
-	validationList = [None]*validationNumber
-	testingList = [None]*testingNumber
+	# trainingList = [None]*trainingNumber
+	# validationList = [None]*validationNumber
+	# testingList = [None]*testingNumber
 
 def embedded_rebber_grammar():
 	sequence = "B"
@@ -89,6 +88,6 @@ def state_end(sequence):
 	sequence += "E"
 	return(sequence)
 
-
+create_data(1000,20)
 
 
